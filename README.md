@@ -1,12 +1,6 @@
-<p align="center">
+<p align="left">
   <img src="FinMate_App.png" alt="FinMate Logo" width="300"/>
 </p>
-
-<h1 align="center">💰 FinMate</h1>
-<p align="center">
-  Your AI-powered personal finance companion for smarter student budgeting and financial insights.
-</p>
-
 
 # FinMate — Your Smart Money Friend  
 **ISOM 839 — Prescriptive Analytics Final Project Track B Fall 2025**
