@@ -7,8 +7,8 @@ st.set_page_config(page_title="FinMate - Student Budget Coach", layout="wide")
 st.title("FinMate 💸 - Student Budget Coach")
 st.write("ISOM 839 – Prescriptive Analytics (Track B)")
 st.write(
-    "Upload your transaction file or use the built-in sample data to see "
-    "your spending breakdown and simple budget recommendations."
+    "Upload your transaction file, use the built-in sample data, or try a quick manual scenario "
+    "to see your spending breakdown and simple budget recommendations."
 )
 
 # ----------------- Config: target budget shares ----------------- #
@@ -22,26 +22,71 @@ TARGET_BUDGET = {
     "Other": 0.10,
 }
 
-# ----------------- Sidebar: data + settings ----------------- #
-st.sidebar.header("1. Data Input")
+# ----------------- Sidebar: data source + settings ----------------- #
+st.sidebar.header("1. Data Input Mode")
 
-uploaded_file = st.sidebar.file_uploader(
-    "Upload CSV (date, category, amount, type)", type=["csv"]
+data_mode = st.sidebar.radio(
+    "Choose input mode",
+    ["CSV / Sample file", "Manual quick test"],
 )
-
-use_sample = st.sidebar.checkbox("Use bundled sample data (sample_data.csv)", value=True)
 
 def load_sample_data() -> pd.DataFrame:
     df = pd.read_csv("sample_data.csv")
     return df
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-elif use_sample:
-    df = load_sample_data()
-else:
-    st.warning("Please upload a CSV file or select the sample data option in the sidebar.")
-    st.stop()
+df = None  # will hold the final dataframe
+
+if data_mode == "CSV / Sample file":
+    st.sidebar.subheader("From file")
+    uploaded_file = st.sidebar.file_uploader(
+        "Upload CSV (date, category, amount, type)", type=["csv"]
+    )
+    use_sample = st.sidebar.checkbox(
+        "Use bundled sample data (sample_data.csv)", value=True
+    )
+
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+    elif use_sample:
+        df = load_sample_data()
+    else:
+        st.warning("Please upload a CSV file or select the sample data option in the sidebar.")
+        st.stop()
+
+else:  # Manual quick test
+    st.sidebar.subheader("Manual monthly scenario")
+    st.sidebar.caption("Enter your monthly income and spending by category.")
+
+    income_manual = st.sidebar.number_input(
+        "Monthly income ($)", min_value=0.0, value=1800.0, step=50.0
+    )
+
+    rent = st.sidebar.number_input("Rent ($)", min_value=0.0, value=1200.0, step=25.0)
+    groceries = st.sidebar.number_input("Groceries ($)", min_value=0.0, value=250.0, step=10.0)
+    eating_out = st.sidebar.number_input("Eating Out ($)", min_value=0.0, value=150.0, step=10.0)
+    transport = st.sidebar.number_input("Transport ($)", min_value=0.0, value=90.0, step=5.0)
+    shopping = st.sidebar.number_input("Shopping ($)", min_value=0.0, value=150.0, step=10.0)
+    subs = st.sidebar.number_input("Subscriptions ($)", min_value=0.0, value=30.0, step=5.0)
+    other = st.sidebar.number_input("Other ($)", min_value=0.0, value=60.0, step=5.0)
+
+    # Build a simple one-month dataframe with the same schema as the CSV
+    rows = [{"date": "2025-11-01", "category": "Income", "amount": income_manual, "type": "income"}]
+
+    def add_row(cat, amt):
+        if amt > 0:
+            rows.append(
+                {"date": "2025-11-01", "category": cat, "amount": amt, "type": "expense"}
+            )
+
+    add_row("Rent", rent)
+    add_row("Groceries", groceries)
+    add_row("Eating Out", eating_out)
+    add_row("Transport", transport)
+    add_row("Shopping", shopping)
+    add_row("Subscriptions", subs)
+    add_row("Other", other)
+
+    df = pd.DataFrame(rows)
 
 # Ensure correct dtypes
 df["date"] = pd.to_datetime(df["date"])
@@ -68,7 +113,7 @@ kpi4.metric("Savings Rate", f"{savings_rate:,.1f}%")
 if income <= 0:
     st.warning(
         "No income detected in the data. "
-        "Please include at least one row with type = 'income'."
+        "Please include at least one row with type = 'income' or enter income in manual mode."
     )
 
 # ----------------- Spending by category ----------------- #
@@ -103,21 +148,24 @@ bar_col, pie_col = st.columns(2)
 
 with bar_col:
     st.caption("Total spend ($) by category")
-    bar_chart = (
-        alt.Chart(category_summary)
-        .mark_bar()
-        .encode(
-            x=alt.X("category:N", title="Category"),
-            y=alt.Y("amount:Q", title="Total spend ($)"),
-            tooltip=["category", "amount"],
+    if not category_summary.empty:
+        bar_chart = (
+            alt.Chart(category_summary)
+            .mark_bar()
+            .encode(
+                x=alt.X("category:N", title="Category"),
+                y=alt.Y("amount:Q", title="Total spend ($)"),
+                tooltip=["category", "amount"],
+            )
         )
-    )
-    st.altair_chart(bar_chart, use_container_width=True)
+        st.altair_chart(bar_chart, use_container_width=True)
+    else:
+        st.info("No expense data to display.")
 
 # -------- Pie chart (share of income) -------- #
 with pie_col:
     st.caption("Share of income by category")
-    if income > 0:
+    if income > 0 and not category_summary.empty:
         pie_data = category_summary.copy()
         pie_data["share_pct"] = pie_data["share_of_income"] * 100
 
@@ -132,7 +180,7 @@ with pie_col:
         )
         st.altair_chart(pie_chart, use_container_width=True)
     else:
-        st.info("Pie chart requires at least one income row to compute shares.")
+        st.info("Pie chart requires income and expense data to compute shares.")
 
 # -------- Table with status -------- #
 st.subheader("Budget Status by Category")
@@ -154,7 +202,7 @@ st.subheader("Recommendations")
 if income <= 0:
     st.warning(
         "Cannot compute recommendations without income. "
-        "Add income rows or adjust your dataset."
+        "Add income rows or use manual mode to enter your monthly income."
     )
 else:
     target_savings_amount = income * (desired_savings_rate / 100)
