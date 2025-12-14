@@ -315,18 +315,53 @@ else:
     target_savings_amount = income * (desired_savings_rate / 100)
     savings_gap = target_savings_amount - net_savings
 
+    # ---------- 💰 Budget Health Meter ---------- #
+    if target_savings_amount > 0:
+        health_ratio = net_savings / target_savings_amount
+    else:
+        health_ratio = 0
+
+    # Clamp between 0 and 1
+    health_ratio = max(0.0, min(1.0, health_ratio))
+    health_pct = health_ratio * 100
+    int_health = int(round(health_pct))  # st.progress expects 0–100
+
+    st.markdown("**💰 Budget Health Meter**")
+    meter_col1, meter_col2 = st.columns([3, 1])
+
+    with meter_col1:
+        st.progress(
+            int_health,
+            text=f"{health_pct:.0f}% of target savings achieved",
+        )
+
+    with meter_col2:
+        if health_ratio >= 1:
+            label = "On track 🎯"
+        elif health_ratio >= 0.7:
+            label = "Almost there 🙂"
+        elif health_ratio >= 0.4:
+            label = "Needs attention ⚠️"
+        else:
+            label = "High risk 🚨"
+        st.write(f"{label}")
+
+    # ---------- Existing recommendation logic ---------- #
     if savings_gap <= 0:
         st.success(
             f"Great job! You're already meeting or exceeding your savings goal "
             f"of {desired_savings_rate}% 🎉"
         )
+        # No overspend logic needed when you're already at or above goal
     else:
         st.write(
             f"To reach your savings goal of **{desired_savings_rate}%**, "
             f"you need to save about **${savings_gap:,.0f}** more in this period."
         )
 
-        overspend = category_summary[category_summary["status"].isin(["Caution", "Critical"])].copy()
+        overspend = category_summary[
+            category_summary["status"].isin(["Caution", "Critical"])
+        ].copy()
         overspend["target_share"] = overspend["category"].map(TARGET_BUDGET).fillna(0.10)
         overspend["target_amount"] = overspend["target_share"] * income
         overspend["excess_amount"] = (overspend["amount"] - overspend["target_amount"]).clip(lower=0)
@@ -339,7 +374,9 @@ else:
                 "Consider small reductions in non-essential categories to close the savings gap."
             )
         else:
-            overspend["suggested_cut"] = overspend["excess_amount"] * min(1, savings_gap / total_excess)
+            overspend["suggested_cut"] = overspend["excess_amount"] * min(
+                1, savings_gap / total_excess
+            )
 
             st.write("Suggested category-wise adjustments:")
             suggestion_table = overspend[
@@ -358,17 +395,17 @@ else:
 
             st.markdown("**Suggestions:**")
 
-# Only loop through overspend if it exists and is not empty
-if "overspend" in locals() and not overspend.empty:
-    for _, row in overspend.iterrows():
-        if row["suggested_cut"] > 0:
-            sentence = (
-                f"- Reduce {row['category']} spending by about ${row['suggested_cut']:.0f}, "
-                f"from ${row['amount']:.0f} to ${row['target_amount']:.0f}."
-            )
-            st.text(sentence)
-else:
-    st.info("No further cuts needed — your budget looks great! 🎉")
+            if not overspend.empty:
+                for _, row in overspend.iterrows():
+                    if row["suggested_cut"] > 0:
+                        sentence = (
+                            f"- Reduce {row['category']} spending by about ${row['suggested_cut']:.0f}, "
+                            f"from ${row['amount']:.0f} to ${row['target_amount']:.0f}."
+                        )
+                        st.text(sentence)
+            else:
+                st.info("No further cuts needed — your budget looks great! 🎉")
+
 
 
 
