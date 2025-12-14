@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="FinMate_App.png" alt="FinMate Logo" width="300"/>
+  <img src="FinMate_App.png" alt="FinMate Logo" width="800"/>
 </p>
 
 # FinMate — Your Smart Money Friend  
