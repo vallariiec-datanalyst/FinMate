@@ -7,17 +7,28 @@ st.set_page_config(page_title="FinMate - Your Smart Money Friend", layout="wide"
 # ---------- Custom CSS theme (background + cards + fonts) ---------- #
 FINMATE_CSS = """
 <style>
-/* Animated diagonal background – content colors stay constant */
+/* 🌈 Animated dark rainbow background */
 .stApp {
-    background: linear-gradient(135deg, #020617, #0b1020, #111827, #1e293b, #020617);
-    background-size: 320% 320%;
-    animation: finmateDiagonalShift 28s ease-in-out infinite;
+    background: linear-gradient(135deg,
+        #0a0f1a,
+        #0f172a,
+        #1e1b4b,
+        #312e81,
+        #4338ca,
+        #6d28d9,
+        #7e22ce,
+        #9333ea,
+        #0f172a,
+        #0a0f1a
+    );
+    background-size: 600% 600%;
+    animation: finmateRainbowWave 40s ease-in-out infinite;
     color: #e5e7eb;
     font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Diagonal wave movement (top-left → bottom-right and back) */
-@keyframes finmateDiagonalShift {
+/* 🌊 Smooth diagonal wave motion (top-left to bottom-right and back) */
+@keyframes finmateRainbowWave {
     0% {
         background-position: 0% 0%;
     }
@@ -35,34 +46,40 @@ FINMATE_CSS = """
     }
 }
 
-/* Main content container (glass card) */
+/* Main glass card */
 .main .block-container {
-    background: rgba(15, 23, 42, 0.94);
+    background: rgba(15, 23, 42, 0.9);
     border-radius: 24px;
     padding: 2.5rem;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
     border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
-/* Sidebar styling */
+/* Sidebar */
 [data-testid="stSidebar"] {
-    background: radial-gradient(circle at 0% 0%, #020617 0, #020617 40%, #000000 100%);
+    background: radial-gradient(circle at 0% 0%, #020617 0, #0a0f1a 40%, #000000 100%);
     border-right: 1px solid rgba(148, 163, 184, 0.3);
 }
 [data-testid="stSidebar"] * {
     color: #e5e7eb;
 }
 
-/* Titles & headings */
+/* Headings */
 h1, h2, h3, h4 {
     color: #f9fafb;
     letter-spacing: 0.03em;
 }
 
-/* KPI metric numbers */
+/* 💸 KPI metric values – bright neon green for money */
 [data-testid="stMetricValue"] {
-    color: #f97316;
-    font-weight: 700;
+    color: #00ff99 !important;
+    font-weight: 800;
+    text-shadow: 0 0 8px rgba(0, 255, 153, 0.4);
+}
+
+/* KPI labels subtler */
+[data-testid="stMetricLabel"] {
+    color: #cbd5e1;
 }
 
 /* Tables */
@@ -71,7 +88,7 @@ h1, h2, h3, h4 {
     overflow: hidden;
 }
 
-/* Links + accent elements */
+/* Links + accents */
 a {
     color: #38bdf8;
 }
@@ -79,7 +96,7 @@ a:hover {
     color: #f97316;
 }
 
-/* Small footer text */
+/* Footer */
 .finmate-footer {
     color: #9ca3af;
     font-size: 0.75rem;
@@ -88,6 +105,7 @@ a:hover {
 }
 </style>
 """
+
 
 
 
