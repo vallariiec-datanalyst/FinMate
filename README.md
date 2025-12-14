@@ -2,6 +2,7 @@
 Analytics-Driven Budget Coach
 
 ISOM 839 – Prescriptive Analytics Final Project
+
 Creator: Vallariie Chindarkar
 
 A Streamlit web app that analyzes spending and recommends data-driven budgeting strategies.
