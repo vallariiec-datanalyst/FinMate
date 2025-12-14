@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-st.set_page_config(page_title="FinMate - Student Budget Coach", layout="wide")
+st.set_page_config(page_title="FinMate - Your Smart Money Friend", layout="wide")
 
-st.title("FinMate 💸 - Student Budget Coach")
-st.write("ISOM 839 – Prescriptive Analytics (Track B)")
+st.title("FinMate - Your Smart Money Friend")
+st.write("ISOM 839 – Prescriptive Analytics Final Project")
 st.write(
     "Upload your transaction file, use the built-in sample data, or try a quick manual scenario "
-    "to see your spending breakdown and simple budget recommendations."
+    "to see your spending breakdown and some simple budget recommendations."
 )
 
 # ----------------- Config: target budget shares ----------------- #
