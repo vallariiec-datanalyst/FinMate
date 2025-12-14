@@ -7,28 +7,53 @@ st.set_page_config(page_title="FinMate - Your Smart Money Friend", layout="wide"
 # ---------- Custom CSS theme (background + cards + fonts) ---------- #
 FINMATE_CSS = """
 <style>
-/* Overall app background */
+/* Animated background using a smooth gradient */
 .stApp {
-    background: radial-gradient(circle at 0% 0%, #1e293b 0, #020617 45%, #000000 100%);
+    background: linear-gradient(135deg, #020617, #0f172a, #1d283a, #0f172a, #020617);
+    background-size: 400% 400%;
+    animation: finmateGradientShift 22s ease infinite;
     color: #e5e7eb;
     font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Main content container (the center panel) */
+/* Keyframes for color shifting */
+@keyframes finmateGradientShift {
+    0% {
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        background-position: 50% 50%;
+        filter: hue-rotate(40deg);   /* teal-ish */
+    }
+    50% {
+        background-position: 100% 50%;
+        filter: hue-rotate(80deg);   /* blue/purple */
+    }
+    75% {
+        background-position: 50% 50%;
+        filter: hue-rotate(140deg);  /* deep purple */
+    }
+    100% {
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg);
+    }
+}
+
+/* Main content container (glass card) */
 .main .block-container {
-    background: rgba(15, 23, 42, 0.92); /* slate-900 with opacity */
+    background: rgba(15, 23, 42, 0.94);
     border-radius: 24px;
     padding: 2.5rem 2.5rem 2.5rem 2.5rem;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
     border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 /* Sidebar styling */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #020617 0%, #0f172a 40%, #020617 100%);
+    background: radial-gradient(circle at 0% 0%, #020617 0, #020617 40%, #000000 100%);
     border-right: 1px solid rgba(148, 163, 184, 0.3);
 }
-
 [data-testid="stSidebar"] * {
     color: #e5e7eb;
 }
@@ -41,7 +66,7 @@ h1, h2, h3, h4 {
 
 /* KPI metric numbers */
 [data-testid="stMetricValue"] {
-    color: #f97316;  /* warm accent */
+    color: #f97316;
     font-weight: 700;
 }
 
@@ -68,6 +93,7 @@ a:hover {
 }
 </style>
 """
+
 
 st.markdown(FINMATE_CSS, unsafe_allow_html=True)
 
