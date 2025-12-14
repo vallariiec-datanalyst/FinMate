@@ -4,9 +4,9 @@
 **Creator:** *Vallariie Chindarkar*  
 **Instructor:** *Prof. Hasan Arslan*   
 
-**Live Demo:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
-**Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)  
-**Demo Video:**
+*Live Demo:* [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
+*Source Code:* [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)  
+*Demo Video:*
 ---
 
 ## Overview
@@ -211,9 +211,9 @@ Unauthorized use, copying, or distribution of this code or design is prohibited 
 
 **Vallariie Chindarkar**  
 *M.S. Business Analytics — Suffolk University*  
-vallariie.chindarkar@su.suffolk.edu 
-vallariie.chindarkar@gmail.com
-[LinkedIn Profile](https://www.linkedin.com/in/vallariiec)  
+vallariie.chindarkar@su.suffolk.edu  
+vallariie.chindarkar@gmail.com  
+[LinkedIn Profile](www.linkedin.com/in/vallariiec)  
 
 ---
 
