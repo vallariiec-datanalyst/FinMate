@@ -4,12 +4,12 @@
 **Creator:** *Vallariie Chindarkar*  
 **Instructor:** *Prof. Hasan Arslan*   
 
-👉 **Live Demo:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
-👉 **Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)
-
+**Live Demo:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
+**Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)
+**Demo Video:**
 ---
 
-## 🚀 Overview
+## Overview
 
 **FinMate** is an intelligent budgeting and savings coach designed for **students and young professionals**.  
 It transforms raw transaction data into *actionable financial guidance*, providing personalized recommendations that help users achieve their desired savings goals.
@@ -20,7 +20,7 @@ FinMate bridges this gap with analytics-driven insights that answer:
 
 ---
 
-## 🎯 Problem & Value Proposition
+## Problem & Value Proposition
 
 **The Challenge**  
 - Fragmented expense tracking with no behavioral insights  
@@ -36,21 +36,21 @@ FinMate empowers students to **make better spending choices**, improve financial
 
 ---
 
-## 🧠 Analytics & Methodology
+## Analytics & Methodology
 
 FinMate applies the full **prescriptive analytics framework**:
 
-### 1️⃣ Data Ingestion
+### 1️. Data Ingestion
 Accepts uploaded CSVs or manual input (monthly income + category expenses).
 
-### 2️⃣ Descriptive Analytics
+### 2️. Descriptive Analytics
 Calculates key financial KPIs:
 - Total Income  
 - Total Expenses  
 - Net Savings  
 - Savings Rate (%)  
 
-### 3️⃣ Diagnostic Analytics
+### 3️. Diagnostic Analytics
 Benchmarks spending by category against target budget rules:
 
 ```python
@@ -67,14 +67,14 @@ TARGET_BUDGET = {
 
 Each category is labeled as **OK / Caution / Critical** based on deviation.
 
-### 4️⃣ Prescriptive Analytics
+### 4️. Prescriptive Analytics
 - Calculates exact *suggested cuts* per category  
 - Quantifies the *savings gap* to reach the desired rate  
 - Generates *plain-language recommendations* for easy understanding  
 
 ---
 
-## 📊 Core Features
+## Core Features
 
 | Feature | Description |
 |----------|-------------|
@@ -87,7 +87,7 @@ Each category is labeled as **OK / Caution / Critical** based on deviation.
 
 ---
 
-## 📂 Dataset Schema
+## Dataset Schema
 
 | Column | Description | Example |
 |---------|--------------|---------|
@@ -102,7 +102,7 @@ A sample dataset is included for immediate use.
 
 ---
 
-## 💻 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |--------|-------------|
@@ -114,7 +114,7 @@ A sample dataset is included for immediate use.
 
 ---
 
-## 🧩 Project Structure
+## Project Structure
 
 ```
 FinMate/
@@ -127,7 +127,7 @@ FinMate/
 
 ---
 
-## 📦 Local Setup & Usage
+## Local Setup & Usage
 
 ```bash
 # Clone repository
@@ -143,16 +143,16 @@ streamlit run app.py
 
 ---
 
-## 🌐 Deployment
+## Deployment
 
 FinMate is deployed via **Streamlit Cloud** for seamless public access:  
-🔗 [https://finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)
+[https://finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)
 
 Each GitHub commit automatically updates the hosted app.
 
 ---
 
-## 🎥 Demonstration Video
+## Demonstration Video
 
 A 3–5 minute **Loom** presentation covers:
 - Problem Identification & Motivation  
@@ -165,7 +165,7 @@ A 3–5 minute **Loom** presentation covers:
 
 ---
 
-## 🌟 Design & User Experience
+## Design & User Experience
 
 FinMate’s design blends **modern minimalism with a futuristic aesthetic**:  
 - Animated dark-rainbow background for visual depth  
@@ -177,7 +177,7 @@ The interface is built for *clarity, immersion, and trust* — appealing to both
 
 ---
 
-## 💡 Future Enhancements
+## Future Enhancements
 
 | Goal | Description |
 |------|-------------|
@@ -189,7 +189,7 @@ The interface is built for *clarity, immersion, and trust* — appealing to both
 
 ---
 
-## 📈 Impact & Learning Outcomes
+## Impact & Learning Outcomes
 
 - Demonstrated full **Descriptive → Diagnostic → Prescriptive** analytics pipeline  
 - Built a deployable **Streamlit web application**  
@@ -200,18 +200,19 @@ FinMate exemplifies how analytics can drive meaningful, personalized action — 
 
 ---
 
-## 📝 License
+## License
 
 This project is released under the **MIT License** — free for academic, research, and commercial adaptation.
 
 ---
 
-## 📞 Contact
+## Contact
 
 **Vallariie Chindarkar**  
-🎓 *M.S. Business Analytics — Suffolk University*  
-📧 vallariie.chindarkar@su.suffolk.edu  
-🌐 [LinkedIn Profile](https://www.linkedin.com/in/vallariiec)  
+*M.S. Business Analytics — Suffolk University*  
+vallariie.chindarkar@su.suffolk.edu 
+vallariie.chindarkar@gmail.com
+[LinkedIn Profile](https://www.linkedin.com/in/vallariiec)  
 
 ---
 
