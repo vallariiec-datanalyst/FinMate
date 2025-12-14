@@ -368,7 +368,7 @@ for _, row in overspend.iterrows():
 
 st.markdown(
     '<div class="finmate-footer">'
-    'FinMate – ISOM 839 Prescriptive Analytics (Track B) – '
+    'FinMate – '
     'Created by Vallariie Chindarkar'
     '</div>',
     unsafe_allow_html=True,
