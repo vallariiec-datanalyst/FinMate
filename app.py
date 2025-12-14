@@ -4,6 +4,73 @@ import altair as alt
 
 st.set_page_config(page_title="FinMate - Your Smart Money Friend", layout="wide")
 
+# ---------- Custom CSS theme (background + cards + fonts) ---------- #
+FINMATE_CSS = """
+<style>
+/* Overall app background */
+.stApp {
+    background: radial-gradient(circle at 0% 0%, #1e293b 0, #020617 45%, #000000 100%);
+    color: #e5e7eb;
+    font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Main content container (the center panel) */
+.main .block-container {
+    background: rgba(15, 23, 42, 0.92); /* slate-900 with opacity */
+    border-radius: 24px;
+    padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #020617 0%, #0f172a 40%, #020617 100%);
+    border-right: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+[data-testid="stSidebar"] * {
+    color: #e5e7eb;
+}
+
+/* Titles & headings */
+h1, h2, h3, h4 {
+    color: #f9fafb;
+    letter-spacing: 0.03em;
+}
+
+/* KPI metric numbers */
+[data-testid="stMetricValue"] {
+    color: #f97316;  /* warm accent */
+    font-weight: 700;
+}
+
+/* Tables */
+[data-testid="stDataFrame"] {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Links + accent elements */
+a {
+    color: #38bdf8;
+}
+a:hover {
+    color: #f97316;
+}
+
+/* Small footer text */
+.finmate-footer {
+    color: #9ca3af;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+</style>
+"""
+
+st.markdown(FINMATE_CSS, unsafe_allow_html=True)
+
 st.title("FinMate - Your Smart Money Friend")
 st.write("ISOM 839 – Prescriptive Analytics Final Project")
 st.write(
@@ -260,7 +327,9 @@ for _, row in overspend.iterrows():
 
 
 st.markdown(
-    "<br><sub>FinMate – ISOM 839 Prescriptive Analytics (Track B) – "
-    "Created by Vallariie Chindarkar</sub>",
+    '<div class="finmate-footer">'
+    'FinMate – ISOM 839 Prescriptive Analytics (Track B) – '
+    'Created by Vallariie Chindarkar'
+    '</div>',
     unsafe_allow_html=True,
 )
