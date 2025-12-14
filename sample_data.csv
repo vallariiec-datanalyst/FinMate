@@ -1,0 +1,26 @@
+date,category,amount,type
+2025-11-01,Rent,1200,expense
+2025-11-01,Groceries,85,expense
+2025-11-01,Transport,25,expense
+2025-11-02,Eating Out,30,expense
+2025-11-02,Shopping,60,expense
+2025-11-02,Subscriptions,15,expense
+2025-11-03,Groceries,40,expense
+2025-11-03,Eating Out,22,expense
+2025-11-03,Other,18,expense
+2025-11-04,Transport,18,expense
+2025-11-04,Shopping,45,expense
+2025-11-04,Eating Out,28,expense
+2025-11-05,Income,1800,income
+2025-11-10,Groceries,70,expense
+2025-11-10,Eating Out,35,expense
+2025-11-11,Transport,20,expense
+2025-11-12,Shopping,90,expense
+2025-11-12,Other,25,expense
+2025-11-15,Subscriptions,15,expense
+2025-11-18,Eating Out,40,expense
+2025-11-20,Groceries,65,expense
+2025-11-22,Transport,22,expense
+2025-11-24,Shopping,80,expense
+2025-11-26,Other,30,expense
+2025-11-28,Eating Out,32,expense
