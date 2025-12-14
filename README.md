@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/vallariiec-datanalyst/FinMate/blob/main/assets/finmate-logo.png?raw=true" alt="FinMate Logo" width="300"/>
+  <img src="FinMate_App.png" alt="FinMate Logo" width="300"/>
 </p>
 
 <h1 align="center">💰 FinMate</h1>
