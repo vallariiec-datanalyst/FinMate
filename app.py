@@ -7,36 +7,31 @@ st.set_page_config(page_title="FinMate - Your Smart Money Friend", layout="wide"
 # ---------- Custom CSS theme (background + cards + fonts) ---------- #
 FINMATE_CSS = """
 <style>
-/* Animated background using a smooth gradient */
+/* Animated diagonal background – content colors stay constant */
 .stApp {
-    background: linear-gradient(135deg, #020617, #0f172a, #1d283a, #0f172a, #020617);
-    background-size: 400% 400%;
-    animation: finmateGradientShift 22s ease infinite;
+    background: linear-gradient(135deg, #020617, #0b1020, #111827, #1e293b, #020617);
+    background-size: 320% 320%;
+    animation: finmateDiagonalShift 28s ease-in-out infinite;
     color: #e5e7eb;
     font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Keyframes for color shifting */
-@keyframes finmateGradientShift {
+/* Diagonal wave movement (top-left → bottom-right and back) */
+@keyframes finmateDiagonalShift {
     0% {
-        background-position: 0% 50%;
-        filter: hue-rotate(0deg);
+        background-position: 0% 0%;
     }
     25% {
         background-position: 50% 50%;
-        filter: hue-rotate(40deg);   /* teal-ish */
     }
     50% {
-        background-position: 100% 50%;
-        filter: hue-rotate(80deg);   /* blue/purple */
+        background-position: 100% 100%;
     }
     75% {
         background-position: 50% 50%;
-        filter: hue-rotate(140deg);  /* deep purple */
     }
     100% {
-        background-position: 0% 50%;
-        filter: hue-rotate(0deg);
+        background-position: 0% 0%;
     }
 }
 
@@ -44,7 +39,7 @@ FINMATE_CSS = """
 .main .block-container {
     background: rgba(15, 23, 42, 0.94);
     border-radius: 24px;
-    padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+    padding: 2.5rem;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
     border: 1px solid rgba(148, 163, 184, 0.25);
 }
@@ -93,6 +88,7 @@ a:hover {
 }
 </style>
 """
+
 
 
 st.markdown(FINMATE_CSS, unsafe_allow_html=True)
