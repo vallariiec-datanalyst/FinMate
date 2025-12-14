@@ -9,7 +9,7 @@
 **Instructor:** *Prof. Hasan Arslan*   
 
 **Streamlit App:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
-**Loom Walkthrough Video:**
+**Loom Walkthrough Video:** https://www.loom.com/share/1d4b2e2570f0438cad72c3b5f36d3f99
 ---
 
 ## Overview
@@ -164,7 +164,7 @@ A 3–5 minute **Loom** presentation covers:
 - Budget Health Meter & Recommendations  
 - Future Vision  
 
-🎦 *(Insert Loom video link after upload)*
+*(https://www.loom.com/share/1d4b2e2570f0438cad72c3b5f36d3f99)*
 
 ---
 
