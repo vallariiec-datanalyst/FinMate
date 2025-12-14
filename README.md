@@ -1,6 +1,6 @@
 # FinMate — Your Smart Money Friend  
-**ISOM 839 — Prescriptive Analytics Final Project Fall 2025**
-**Track B**
+**ISOM 839 — Prescriptive Analytics Final Project Track B Fall 2025**
+
 **Creator:** *Vallariie Chindarkar*  
 **Instructor:** *Prof. Hasan Arslan*   
 
