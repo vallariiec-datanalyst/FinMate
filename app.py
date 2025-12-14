@@ -1,7 +1,216 @@
 import streamlit as st
+import pandas as pd
+import altair as alt
 
-st.set_page_config(page_title='FinMate - Student Budget Coach', layout='wide')
+st.set_page_config(page_title="FinMate - Student Budget Coach", layout="wide")
 
-st.title('FinMate 💸 - Student Budget Coach')
-st.write('ISOM 839 – Prescriptive Analytics (Track B)')
-st.write('Upload your transactions or use sample data to see insights and budget recommendations.')
+st.title("FinMate 💸 - Student Budget Coach")
+st.write("ISOM 839 – Prescriptive Analytics (Track B)")
+st.write(
+    "Upload your transaction file or use the built-in sample data to see "
+    "your spending breakdown and simple budget recommendations."
+)
+
+# ----------------- Config: target budget shares ----------------- #
+TARGET_BUDGET = {
+    "Rent": 0.40,
+    "Groceries": 0.15,
+    "Eating Out": 0.10,
+    "Transport": 0.10,
+    "Shopping": 0.10,
+    "Subscriptions": 0.05,
+    "Other": 0.10,
+}
+
+# ----------------- Sidebar: data + settings ----------------- #
+st.sidebar.header("1. Data Input")
+
+uploaded_file = st.sidebar.file_uploader(
+    "Upload CSV (date, category, amount, type)", type=["csv"]
+)
+
+use_sample = st.sidebar.checkbox("Use bundled sample data (sample_data.csv)", value=True)
+
+def load_sample_data() -> pd.DataFrame:
+    df = pd.read_csv("sample_data.csv")
+    return df
+
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+elif use_sample:
+    df = load_sample_data()
+else:
+    st.warning("Please upload a CSV file or select the sample data option in the sidebar.")
+    st.stop()
+
+# Ensure correct dtypes
+df["date"] = pd.to_datetime(df["date"])
+
+st.sidebar.header("2. Savings Goal")
+desired_savings_rate = st.sidebar.slider(
+    "Desired savings rate (% of income)", min_value=5, max_value=50, value=20, step=1
+)
+
+# ----------------- Analytics: KPIs ----------------- #
+income = df.loc[df["type"] == "income", "amount"].sum()
+expenses = df.loc[df["type"] == "expense", "amount"].sum()
+net_savings = income - expenses
+savings_rate = (net_savings / income * 100) if income > 0 else 0
+
+st.subheader("Overview")
+
+kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+kpi1.metric("Total Income", f"${income:,.0f}")
+kpi2.metric("Total Expenses", f"${expenses:,.0f}")
+kpi3.metric("Net Savings", f"${net_savings:,.0f}")
+kpi4.metric("Savings Rate", f"{savings_rate:,.1f}%")
+
+if income <= 0:
+    st.warning(
+        "No income detected in the data. "
+        "Please include at least one row with type = 'income'."
+    )
+
+# ----------------- Spending by category ----------------- #
+st.subheader("Spending by Category")
+
+expense_df = df[df["type"] == "expense"].copy()
+category_summary = (
+    expense_df.groupby("category", as_index=False)["amount"].sum()
+)
+category_summary["share_of_income"] = (
+    category_summary["amount"] / income if income > 0 else 0
+)
+
+def classify_category(row):
+    cat = row["category"]
+    actual = row["share_of_income"]
+    target = TARGET_BUDGET.get(cat, 0.10)
+    if actual <= target + 0.02:
+        return "OK"
+    elif actual <= target + 0.05:
+        return "Caution"
+    else:
+        return "Critical"
+
+if income > 0 and not category_summary.empty:
+    category_summary["status"] = category_summary.apply(classify_category, axis=1)
+else:
+    category_summary["status"] = "N/A"
+
+# -------- Bar chart (amount by category) -------- #
+bar_col, pie_col = st.columns(2)
+
+with bar_col:
+    st.caption("Total spend ($) by category")
+    bar_chart = (
+        alt.Chart(category_summary)
+        .mark_bar()
+        .encode(
+            x=alt.X("category:N", title="Category"),
+            y=alt.Y("amount:Q", title="Total spend ($)"),
+            tooltip=["category", "amount"],
+        )
+    )
+    st.altair_chart(bar_chart, use_container_width=True)
+
+# -------- Pie chart (share of income) -------- #
+with pie_col:
+    st.caption("Share of income by category")
+    if income > 0:
+        pie_data = category_summary.copy()
+        pie_data["share_pct"] = pie_data["share_of_income"] * 100
+
+        pie_chart = (
+            alt.Chart(pie_data)
+            .mark_arc()
+            .encode(
+                theta=alt.Theta("share_pct:Q", title="Share of income (%)"),
+                color=alt.Color("category:N", legend=alt.Legend(title="Category")),
+                tooltip=["category", alt.Tooltip("share_pct:Q", format=".1f")]
+            )
+        )
+        st.altair_chart(pie_chart, use_container_width=True)
+    else:
+        st.info("Pie chart requires at least one income row to compute shares.")
+
+# -------- Table with status -------- #
+st.subheader("Budget Status by Category")
+
+display_table = category_summary.copy()
+display_table["share_of_income"] = (display_table["share_of_income"] * 100).round(1)
+display_table = display_table.rename(
+    columns={
+        "amount": "Amount ($)",
+        "share_of_income": "Share of Income (%)",
+        "status": "Status",
+    }
+)
+st.dataframe(display_table, hide_index=True)
+
+# ----------------- Recommendations ----------------- #
+st.subheader("Recommendations")
+
+if income <= 0:
+    st.warning(
+        "Cannot compute recommendations without income. "
+        "Add income rows or adjust your dataset."
+    )
+else:
+    target_savings_amount = income * (desired_savings_rate / 100)
+    savings_gap = target_savings_amount - net_savings
+
+    if savings_gap <= 0:
+        st.success(
+            f"Great job! You're already meeting or exceeding your savings goal "
+            f"of {desired_savings_rate}% 🎉"
+        )
+    else:
+        st.write(
+            f"To reach your savings goal of **{desired_savings_rate}%**, "
+            f"you need to save about **${savings_gap:,.0f}** more in this period."
+        )
+
+        overspend = category_summary[category_summary["status"].isin(["Caution", "Critical"])].copy()
+        overspend["target_share"] = overspend["category"].map(TARGET_BUDGET).fillna(0.10)
+        overspend["target_amount"] = overspend["target_share"] * income
+        overspend["excess_amount"] = (overspend["amount"] - overspend["target_amount"]).clip(lower=0)
+
+        total_excess = overspend["excess_amount"].sum()
+
+        if total_excess <= 0:
+            st.info(
+                "Your categories are close to the recommended targets. "
+                "Consider small reductions in non-essential categories to close the savings gap."
+            )
+        else:
+            overspend["suggested_cut"] = overspend["excess_amount"] * min(1, savings_gap / total_excess)
+
+            st.write("Suggested category-wise adjustments:")
+            suggestion_table = overspend[
+                ["category", "amount", "target_amount", "excess_amount", "suggested_cut"]
+            ].round(0)
+            suggestion_table = suggestion_table.rename(
+                columns={
+                    "category": "Category",
+                    "amount": "Current Spend ($)",
+                    "target_amount": "Recommended Spend ($)",
+                    "excess_amount": "Excess Spend ($)",
+                    "suggested_cut": "Suggested Cut ($)",
+                }
+            )
+            st.dataframe(suggestion_table, hide_index=True)
+
+            st.markdown("**Plain-language suggestions:**")
+            for _, row in overspend.iterrows():
+                if row["suggested_cut"] > 0:
+                    st.write(
+                        f"- Reduce **{row['category']}** spending by about **${row['suggested_cut']:.0f}**, "
+                        f"from ${row['amount']:.0f} towards ${row['target_amount']:.0f}."
+                    )
+
+st.markdown(
+    "<br><sub>FinMate – ISOM 839 Prescriptive Analytics (Track B) – "
+    "Created by Vallariie Chindarkar</sub>",
+    unsafe_allow_html=True,
+)
