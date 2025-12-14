@@ -1,9 +1,9 @@
-# 💸 FinMate — Analytics-Driven Budget Coach for Students
+# FinMate — Analytics-Driven Your Smart Money Friend
 
-ISOM 839 – Prescriptive Analytics (Track B)
-Author: Vallariie Chindarkar
+ISOM 839 – Prescriptive Analytics Final Project
+Creator: Vallariie Chindarkar
 
-A Streamlit web app that analyzes student spending and recommends data-driven budgeting strategies.
+A Streamlit web app that analyzes spending and recommends data-driven budgeting strategies.
 
 Run the app locally:
 1. pip install -r requirements.txt
