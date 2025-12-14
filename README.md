@@ -8,7 +8,7 @@
 **Creator:** *Vallariie Chindarkar*  
 **Instructor:** *Prof. Hasan Arslan*   
 
-**Streamlit App:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
+**Streamlit App:** https://finmate-vallariiec.streamlit.app/ 
 **Loom Walkthrough Video:** https://www.loom.com/share/1d4b2e2570f0438cad72c3b5f36d3f99
 ---
 
