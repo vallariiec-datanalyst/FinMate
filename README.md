@@ -213,7 +213,7 @@ Unauthorized use, copying, or distribution of this code or design is prohibited 
 *M.S. Business Analytics — Suffolk University*  
 vallariie.chindarkar@su.suffolk.edu  
 vallariie.chindarkar@gmail.com  
-[LinkedIn Profile](www.linkedin.com/in/vallariiec) 
+[LinkedIn Profile](https://www.linkedin.com/in/vallariiec/) 
 
 ---
 
