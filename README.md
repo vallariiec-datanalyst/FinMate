@@ -1,4 +1,5 @@
-# FinMate — Analytics-Driven Your Smart Money Friend
+# FinMate — Your Smart Money Friend
+Analytics-Driven Budget Coach
 
 ISOM 839 – Prescriptive Analytics Final Project
 Creator: Vallariie Chindarkar
