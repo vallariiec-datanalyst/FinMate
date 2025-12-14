@@ -357,13 +357,19 @@ else:
             st.dataframe(suggestion_table, hide_index=True)
 
             st.markdown("**Suggestions:**")
-for _, row in overspend.iterrows():
-    if row["suggested_cut"] > 0:
-        sentence = (
-            f"- Reduce {row['category']} spending by about ${row['suggested_cut']:.0f}, "
-            f"from ${row['amount']:.0f} to ${row['target_amount']:.0f}."
-        )
-        st.text(sentence)
+
+# Only loop through overspend if it exists and is not empty
+if "overspend" in locals() and not overspend.empty:
+    for _, row in overspend.iterrows():
+        if row["suggested_cut"] > 0:
+            sentence = (
+                f"- Reduce {row['category']} spending by about ${row['suggested_cut']:.0f}, "
+                f"from ${row['amount']:.0f} to ${row['target_amount']:.0f}."
+            )
+            st.text(sentence)
+else:
+    st.info("No further cuts needed — your budget looks great! 🎉")
+
 
 
 st.markdown(
