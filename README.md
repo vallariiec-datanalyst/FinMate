@@ -8,3 +8,6 @@ A Streamlit web app that analyzes student spending and recommends data-driven bu
 Run the app locally:
 1. pip install -r requirements.txt
 2. streamlit run app.py
+
+## 🌐 Live Demo
+👉 **Try FinMate here:** [Click to open Streamlit app](https://finmate-vallariiec.streamlit.app)
