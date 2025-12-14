@@ -5,7 +5,7 @@
 **Instructor:** *Prof. Hasan Arslan*   
 
 **Live Demo:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
-**Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)
+**Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)  
 **Demo Video:**
 ---
 
@@ -201,8 +201,9 @@ FinMate exemplifies how analytics can drive meaningful, personalized action — 
 ---
 
 ## License
-
-This project is released under the **MIT License** — free for academic, research, and commercial adaptation.
+This project is shared for **academic evaluation purposes only**.  
+All rights reserved © 2025 **Vallariie Chindarkar**.  
+Unauthorized use, copying, or distribution of this code or design is prohibited without prior written permission from the author.
 
 ---
 
