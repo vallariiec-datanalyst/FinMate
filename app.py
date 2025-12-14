@@ -250,12 +250,14 @@ else:
             st.dataframe(suggestion_table, hide_index=True)
 
             st.markdown("**Suggestions:**")
-            for _, row in overspend.iterrows():
-                if row["suggested_cut"] > 0:
-                    st.write(
-                        f"- Reduce **{row['category']}** spending by about **${row['suggested_cut']:.0f}**, "
-                        f"from **${row['amount']:.0f}** towards **${row['target_amount']:.0f}**."
-                    )
+for _, row in overspend.iterrows():
+    if row["suggested_cut"] > 0:
+        sentence = (
+            f"- Reduce {row['category']} spending by about ${row['suggested_cut']:.0f}, "
+            f"from ${row['amount']:.0f} to ${row['target_amount']:.0f}."
+        )
+        st.text(sentence)
+
 
 st.markdown(
     "<br><sub>FinMate – ISOM 839 Prescriptive Analytics (Track B) – "
