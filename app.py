@@ -27,7 +27,7 @@ st.sidebar.header("1. Data Input Mode")
 
 data_mode = st.sidebar.radio(
     "Choose input mode",
-    ["CSV / Sample file", "Manual quick test"],
+    ["CSV / Sample file", "Quick manual test"],
 )
 
 def load_sample_data() -> pd.DataFrame:
@@ -253,8 +253,8 @@ else:
             for _, row in overspend.iterrows():
                 if row["suggested_cut"] > 0:
                     st.write(
-                        f"- Reduce **{row['category']}** spending by about **${row['suggested_cut']:.0f}**, "
-                        f"from ${row['amount']:.0f} towards ${row['target_amount']:.0f}."
+                        f"- Reduce {row['category']} spending by about ${row['suggested_cut']:.0f}, "
+                        f"from  ${row['amount']:.0f} towards ${row['target_amount']:.0f}."
                     )
 
 st.markdown(
