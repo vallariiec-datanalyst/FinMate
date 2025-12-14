@@ -4,7 +4,6 @@
 **Creator:** *Vallariie Chindarkar*  
 **Instructor:** *Prof. Hasan Arslan*   
 
-**Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)  
 **Streamlit App:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
 **Loom Walkthrough Video:**
 ---
