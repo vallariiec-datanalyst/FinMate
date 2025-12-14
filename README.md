@@ -4,9 +4,9 @@
 **Creator:** *Vallariie Chindarkar*  
 **Instructor:** *Prof. Hasan Arslan*   
 
-*Live Demo:* [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
-*Source Code:* [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)  
-*Demo Video:*
+**Sttreamlit App:** [finmate-vallariiec.streamlit.app](https://finmate-vallariiec.streamlit.app)  
+**Source Code:** [github.com/vallariiec-datanalyst/FinMate](https://github.com/vallariiec-datanalyst/FinMate)  
+**Loom Walkthrough Video:**
 ---
 
 ## Overview
