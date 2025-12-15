@@ -2,3 +2,9 @@ streamlit
 pandas
 numpy
 altair
+matplotlib
+scipy
+pulp
+gurobipy
+scikit-learn
+plotly
