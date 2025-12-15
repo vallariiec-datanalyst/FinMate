@@ -34,7 +34,10 @@ FinMate bridges this gap with analytics-driven insights that answer:
 - Offers real-time budget diagnostics and tailored recommendations  
 - Provides an engaging, futuristic dashboard experience  
 
-FinMate empowers students to **make better spending choices**, improve financial literacy, and achieve consistent savings — not just track them.
+FinMate empowers students to **make better spending choices**, improve financial literacy, and achieve consistent savings — not just track them. Managing money effectively is one of the biggest challenges students face. FinMate helps users understand where their money goes and suggests the best possible allocation using prescriptive analytics.
+
+![FinMate Home Dashboard](Homepage_FinMate)
+*FinMate’s interactive Streamlit dashboard where users begin their financial journey.*
 
 ---
 
