@@ -77,6 +77,15 @@ Each category is labeled as **OK / Caution / Critical** based on deviation.
 - Quantifies the *savings gap* to reach the desired rate  
 - Generates *plain-language recommendations* for easy understanding  
 
+
+FinMate uses a linear optimization model built in Python to recommend optimal budget allocation. It balances fixed expenses, savings, and discretionary spending while maximizing utility.
+
+![User Input Section](Manual_input_section.png)
+*Users input their income, expenses, and financial goals.*
+
+![Model Logic Summary](Optimization_results.png)
+*Optimization logic summary — balancing goals and constraints.*
+
 ---
 
 ## Core Features
