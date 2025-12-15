@@ -9,7 +9,7 @@
 
 **Streamlit App:** https://finmate-vallariiec.streamlit.app/  
 **Loom Walkthrough Video:** https://www.loom.com/share/1d4b2e2570f0438cad72c3b5f36d3f99
-**Pitch Deck:**/Users/vallariiechindarkar/Downloads/FinMate_byVallariie.pdf
+**Pitch Deck:** FinMate_pitchdeckbyVallariie.pdf
 
 ## Overview
 
