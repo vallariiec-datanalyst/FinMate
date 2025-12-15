@@ -7,7 +7,7 @@ st.set_page_config(page_title="FinMate - Your Smart Money Friend", layout="wide"
 # ---------- Custom CSS theme (background + cards + fonts) ---------- #
 FINMATE_CSS = """
 <style>
-/* 🌈 Animated dark rainbow background */
+/* Animated dark rainbow background */
 .stApp {
     background: linear-gradient(135deg,
         #0a0f1a,
@@ -27,7 +27,7 @@ FINMATE_CSS = """
     font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* 🌊 Smooth diagonal wave motion (top-left to bottom-right and back) */
+/* Smooth diagonal wave motion (top-left to bottom-right and back) */
 @keyframes finmateRainbowWave {
     0% {
         background-position: 0% 0%;
@@ -70,7 +70,7 @@ h1, h2, h3, h4 {
     letter-spacing: 0.03em;
 }
 
-/* 💸 KPI metric values – bright neon green for money */
+/* KPI metric values – bright neon green for money */
 [data-testid="stMetricValue"] {
     color: #00ff99 !important;
     font-weight: 800;
