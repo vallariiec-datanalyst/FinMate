@@ -83,7 +83,7 @@ FinMate uses a linear optimization model built in Python to recommend optimal bu
 ![User Input Section](Manual_input_section.png)
 *Users input their income, expenses, and financial goals.*
 
-![Model Logic Summary](Optimization_results.png)
+![Model Logic Summary](Insights_graphs.png)
 *Optimization logic summary — balancing goals and constraints.*
 
 ---
@@ -154,6 +154,17 @@ pip install -r requirements.txt
 # Launch app
 streamlit run app.py
 ```
+
+---
+## Working Prototype
+
+The app provides personalized budget recommendations instantly based on user data.
+
+![Optimization Results](Optimization_results.png)
+*FinMate’s prescriptive analytics engine generates optimized monthly budgets.*
+
+![Spending Breakdown Chart](Suggestions.png)
+*Interactive visualization of spending and savings using Altair.*
 
 ---
 
